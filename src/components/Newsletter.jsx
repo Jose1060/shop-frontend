@@ -1,5 +1,6 @@
 import { SendOutlined } from "@material-ui/icons";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Contanier = styled.div`
 	height: 60vh;
@@ -12,11 +13,20 @@ const Contanier = styled.div`
 const Title = styled.h1`
 	font-size: 70px;
 	margin-bottom: 20px;
+
+	${mobile({
+		fontSize: "50px",
+		textAlign: "center",
+	})}
 `;
 const Description = styled.div`
 	font-size: 24px;
 	font-weight: bold;
 	margin-bottom: 20px;
+
+	${mobile({
+		textAlign: "center",
+	})}
 `;
 const InputContanier = styled.div`
 	width: 50%;
@@ -25,6 +35,10 @@ const InputContanier = styled.div`
 	display: flex;
 	justify-content: space-between;
 	border: 1px solid #e6e6e6;
+
+	${mobile({
+		width: "80%",
+	})}
 `;
 const Input = styled.input`
 	border: none;

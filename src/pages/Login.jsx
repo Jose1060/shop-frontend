@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
 	width: 100vw;
@@ -18,17 +19,31 @@ const Wrapper = styled.div`
 	width: 25%;
 	padding: 20px;
 	background-color: #fff;
+
+	${mobile({
+		width: "75%",
+	})}
 `;
 
 const Title = styled.h1`
 	font-size: 30px;
 	font-weight: 300;
+
+	${mobile({
+		textAlign: "center",
+		padding: "20px 0px",
+	})}
 `;
 
 const Form = styled.form`
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
+
+	${mobile({
+		justifyContent: "center",
+		alignItems: "center",
+	})}
 `;
 
 const Input = styled.input`
@@ -36,10 +51,10 @@ const Input = styled.input`
 	min-width: 40%;
 	margin: 10px 0px;
 	padding: 10px;
-`;
-const Agreement = styled.span`
-	font-size: 12px;
-	margin: 20px;
+
+	${mobile({
+		width: "80%",
+	})}
 `;
 
 const Button = styled.button`
@@ -56,6 +71,10 @@ const Button = styled.button`
 		background-color: teal;
 		color: white;
 	}
+
+	${mobile({
+		width: "60%",
+	})}
 `;
 
 const Link = styled.a`

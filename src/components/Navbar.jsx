@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import Badge from "@mui/material/Badge";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
 	height: 60px;
+
+	${mobile({ height: "50px" })}
 `;
 
 // Left
@@ -13,11 +16,15 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	${mobile({ padding: "10px 0px" })}
 `;
 
 const Languages = styled.span`
 	font-size: 14px;
 	cursor: pointer;
+
+	${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
@@ -30,11 +37,14 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
 	border: none;
+
+	${mobile({ width: "50px" })}
 `;
 
 // Center
 const Logo = styled.h1`
 	font-weight: bold;
+	${mobile({ fontSize: "24px" })}
 `;
 
 // Right
@@ -42,6 +52,8 @@ const MenuItem = styled.div`
 	font-size: 14px;
 	cursor: pointer;
 	margin-left: 25px;
+
+	${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Left = styled.div`
@@ -60,6 +72,8 @@ const Right = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+
+	${mobile({ justifyContent: "center", flex: 2 })}
 `;
 
 function Navbar() {
@@ -69,7 +83,7 @@ function Navbar() {
 				<Left>
 					<Languages>ES</Languages>
 					<SearchContainer>
-						<Input />
+						<Input placeholder="Buscar" />
 						<Search style={{ color: "green", fontSize: 16 }} />
 					</SearchContainer>
 				</Left>

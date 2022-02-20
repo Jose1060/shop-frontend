@@ -8,9 +8,13 @@ import {
 	Twitter,
 } from "@material-ui/icons";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
 	display: flex;
+	${mobile({
+		flexDirection: "column",
+	})}
 `;
 
 const Left = styled.div`
@@ -23,13 +27,22 @@ const Left = styled.div`
 const Logo = styled.h1`
 	font-size: 2.5rem;
 	font-weight: bold;
+
+	${mobile({ textAlign: "center" })}
 `;
 const Desc = styled.p`
 	margin: 20px 0px;
 	font-weight: bold;
+
+	${mobile({ textAlign: "center" })}
 `;
 const SocialContainer = styled.div`
 	display: flex;
+
+	${mobile({
+		alignItems: "center",
+		justifyContent: "center",
+	})}
 `;
 const SocialIcon = styled.div`
 	width: 40px;
@@ -50,6 +63,10 @@ const Center = styled.div`
 
 const Title = styled.h3`
 	margin-bottom: 30px;
+
+	${mobile({
+		textAlign: "center",
+	})}
 `;
 const List = styled.ul`
 	margin: 0;
@@ -57,6 +74,10 @@ const List = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
+
+	${mobile({
+		textAlign: "center",
+	})}
 `;
 const ListItem = styled.li`
 	width: 50%;
@@ -66,15 +87,26 @@ const ListItem = styled.li`
 const Right = styled.div`
 	flex: 1;
 	padding: 20px;
+	${mobile({
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		flexDirection: "column",
+		backgroundColor: "#eeee",
+	})}
 `;
 
 const ContactItem = styled.div`
 	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
+
+	${mobile({
+		justifyContent: "center",
+	})}
 `;
 const Payment = styled.img`
-	width: 10%; ;
+	width: 10%;
 `;
 
 const Footer = () => {

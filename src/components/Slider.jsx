@@ -2,6 +2,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { useState } from "react";
 import { sliderItems } from "../data";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
 	width: 100%;
@@ -10,6 +11,10 @@ const Container = styled.div`
 	background-color: #069c90;
 	position: relative;
 	overflow: hidden;
+
+	${mobile({
+		height: "85vh",
+	})}
 `;
 
 const Arrow = styled.div`
@@ -48,20 +53,32 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
 	height: 100%;
-	flex: 1;
 `;
 
 const Image = styled.img`
 	height: 80%;
+
+	${mobile({
+		height: "100%",
+		objectFit: "cover",
+	})}
 `;
 
 const InfoContainer = styled.div`
-	flex: 1;
 	padding: 50px;
+	${(props) =>
+		props.bg &&
+		mobile({
+			position: "absolute",
+			backgroundColor: "#" + props.bg,
+			bottom: 0,
+		})}
 `;
 
 const Title = styled.h1`
 	font-size: 70px;
+
+	${mobile({ fontSize: "20px" })}
 `;
 const Desc = styled.p`
 	margin: 50px 0px;
@@ -97,7 +114,7 @@ const Slider = () => {
 						<ImgContainer>
 							<Image src={item.img} />
 						</ImgContainer>
-						<InfoContainer>
+						<InfoContainer bg={item.bg}>
 							<Title>{item.title}</Title>
 							<hr />
 							<Desc>{item.desc}</Desc>
