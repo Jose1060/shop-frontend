@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import Badge from "@mui/material/Badge";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 	height: 60px;
@@ -91,11 +92,17 @@ function Navbar() {
 					<Logo>RyM</Logo>
 				</Center>
 				<Right>
-					<MenuItem>Register</MenuItem>
-					<MenuItem>Sign in</MenuItem>
+					<Link to="/register">
+						<MenuItem>Register</MenuItem>
+					</Link>
+					<Link to="/login">
+						<MenuItem>Sign in</MenuItem>
+					</Link>
 					<MenuItem>
 						<Badge badgeContent={4} color="success">
-							<ShoppingCartOutlined />
+							<Link to="/cart">
+								<ShoppingCartOutlined />
+							</Link>
 						</Badge>
 					</MenuItem>
 				</Right>

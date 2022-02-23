@@ -33,7 +33,11 @@ const Image = styled.img`
 
 const InfoContainer = styled.div`
 	flex: 1;
+	display: flex;
+	flex-direction: column;
 	padding: 0px 50px;
+	justify-content: center;
+
 	${mobile({
 		padding: "30px",
 	})}
