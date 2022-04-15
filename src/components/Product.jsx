@@ -5,6 +5,9 @@ import {
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
+import "./styles.css";
 
 const Info = styled.div`
 	opacity: 0;
@@ -46,6 +49,7 @@ const Circle = styled.div`
 `;
 const Image = styled.img`
 	width: 75%;
+	height: 100%;
 	z-index: 2;
 `;
 
@@ -72,7 +76,7 @@ const Product = ({ item }) => {
 	return (
 		<Contanier>
 			<Circle />
-			<Image src={item.img} />
+			<Image src={item.imagenes[0]} />
 			<Info>
 				<Icon>
 					<ShoppingCartOutlined />

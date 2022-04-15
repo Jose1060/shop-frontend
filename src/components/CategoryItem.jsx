@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { categories } from "@material-ui/icons";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
+import "./styles.css";
 
 const Container = styled.div`
 	flex: 1;
@@ -13,7 +16,6 @@ const Image = styled.img`
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-
 	${mobile({ height: "30vh" })}
 `;
 const Info = styled.div`
@@ -43,9 +45,15 @@ const Button = styled.button`
 const CategoryItem = ({ item }) => {
 	return (
 		<Container>
-			<Image src={item.img} />
+			<Slider autoplay={5000} previousButton={null} nextButton={null}>
+				{item.imagenes.map((slide, index) => (
+					<div key={index}>
+						<Image src={slide} />
+					</div>
+				))}
+			</Slider>
 			<Info>
-				<Title>{item.title}</Title>
+				<Title>{item.nombre}</Title>
 				<Link to="/products">
 					<Button>SHOP NOW</Button>
 				</Link>
