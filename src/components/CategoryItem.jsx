@@ -54,7 +54,7 @@ const CategoryItem = ({ item }) => {
 			</Slider>
 			<Info>
 				<Title>{item.nombre}</Title>
-				<Link to="/products">
+				<Link to={`/categories/${item.id}`}>
 					<Button>SHOP NOW</Button>
 				</Link>
 			</Info>

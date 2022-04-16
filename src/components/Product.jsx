@@ -51,6 +51,8 @@ const Image = styled.img`
 	width: 75%;
 	height: 100%;
 	z-index: 2;
+
+	object-fit: cover;
 `;
 
 const Icon = styled.div`
@@ -86,7 +88,7 @@ const Product = ({ item }) => {
 					<FavoriteBorderOutlined />
 				</Icon>
 
-				<Link to="/products/1">
+				<Link to={`/products/${item.id}`}>
 					<Icon>
 						<SearchOutlined />
 					</Icon>

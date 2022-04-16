@@ -5,6 +5,20 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import { mobile } from "../responsive";
+import React, { useEffect, useState } from "react";
+import {
+	getDocs,
+	collection,
+	deleteDoc,
+	doc,
+	onSnapshot,
+	query,
+	where,
+	getDoc,
+} from "firebase/firestore";
+import { db } from "../firebase-config";
+import { useParams } from "react-router-dom";
+import CustomPaginationActionsTable from "../components/DetailsTable";
 
 const Container = styled.div``;
 
@@ -137,30 +151,48 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+	let { id } = useParams();
+	const [producto, setProducto] = useState({});
+
+	useEffect(() => {
+		const unsub = onSnapshot(
+			doc(db, "Productos", id),
+			(snapShot) => {
+				if (snapShot.exists()) {
+					console.log("Document data:", snapShot.data());
+
+					setProducto({ id: snapShot.id, ...snapShot.data() });
+					console.log("producto", producto);
+				} else {
+					// doc.data() will be undefined in this case
+					console.log("No such document!");
+				}
+			},
+			(e) => {
+				console.log("(ᵔᵕᵔ)/", e);
+			}
+		);
+		return () => {
+			unsub();
+		};
+	}, []);
+
 	return (
 		<Container>
 			<Navbar />
 			<Announcement />
 			<Wrapper>
 				<ImgContainer>
-					<Image src="https://d598hd2wips7r.cloudfront.net/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/3/Y/3Y799LA-1_T1622826153.png" />
+					<Image src={producto.imagenes[0]} />
 				</ImgContainer>
 				<InfoContainer>
-					<Title>Pavilion Laptop</Title>
-					<Desc>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt
-						quisquam consequuntur optio alias totam, esse illum iusto harum
-						cumque ullam nostrum autem officiis eveniet quos vero reprehenderit
-						ipsum, debitis id?
-					</Desc>
-					<Price>$ 20</Price>
+					<Title>{producto.nombre}</Title>
+					<Desc>{producto.descripcion}</Desc>
+					<Price>{producto.precio}</Price>
 					<FilterContanier>
 						<Filter>
 							<FilterTitle>Color</FilterTitle>
-							<FilterColor color="black" />
-							<FilterColor color="white" />
-							<FilterColor color="red" />
-							<FilterColor color="gray" />
+							<FilterColor color={producto.color} />
 						</Filter>
 						<Filter>
 							<FilterTitle>Memoria</FilterTitle>

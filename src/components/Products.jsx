@@ -8,8 +8,11 @@ import {
 	deleteDoc,
 	doc,
 	onSnapshot,
+	query,
+	where,
 } from "firebase/firestore";
 import { db } from "../firebase-config";
+import { useParams } from "react-router-dom";
 
 const Container = styled.div`
 	padding: 20px;
@@ -19,26 +22,47 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+	let { id } = useParams();
 	const [popularProducts, setPoopularProducts] = useState([]);
 	useEffect(() => {
-		const unsub = onSnapshot(
-			collection(db, "Categorias"),
-			(snapShot) => {
-				let list = [];
-				snapShot.forEach((doc) => {
-					console.log("(ᵔᵕᵔ)/", doc.id, "=>", doc.data());
-					list.push({ id: doc.id, ...doc.data() });
-				});
-				setPoopularProducts(list);
-			},
-			(e) => {
-				console.log("(ᵔᵕᵔ)/", e);
-			}
-		);
-
-		return () => {
-			unsub();
-		};
+		console.log("(ᵔᵕᵔ)/", id);
+		if (id) {
+			const unsub = onSnapshot(
+				query(collection(db, "Productos"), where("categori", "==", id)),
+				(snapShot) => {
+					let list = [];
+					snapShot.forEach((doc) => {
+						console.log("(ᵔᵕᵔ)/", doc.id, "=>", doc.data());
+						list.push({ id: doc.id, ...doc.data() });
+					});
+					setPoopularProducts(list);
+				},
+				(e) => {
+					console.log("(ᵔᵕᵔ)/", e);
+				}
+			);
+			return () => {
+				unsub();
+			};
+		} else {
+			const unsub = onSnapshot(
+				collection(db, "Productos"),
+				(snapShot) => {
+					let list = [];
+					snapShot.forEach((doc) => {
+						console.log("(ᵔᵕᵔ)/", doc.id, "=>", doc.data());
+						list.push({ id: doc.id, ...doc.data() });
+					});
+					setPoopularProducts(list);
+				},
+				(e) => {
+					console.log("(ᵔᵕᵔ)/", e);
+				}
+			);
+			return () => {
+				unsub();
+			};
+		}
 	}, []);
 	return (
 		<Container>
